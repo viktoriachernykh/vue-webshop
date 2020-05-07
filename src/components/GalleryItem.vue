@@ -2,7 +2,7 @@
   <li class="gallery-item">
     {{ product_data.article }}
     <img
-      :src="require('../assets/' + product_data.imagesrc)"
+      :src="require('../assets/' + product_data.image)"
       alt="design"
       width="250px"
       height="200px"
@@ -13,27 +13,29 @@
 
 <script>
 export default {
-  name: "GalleryItem",
+  name: 'GalleryItem',
   props: {
     product_data: {
       type: Object,
       default() {
         return {};
-      }
-    }
+      },
+    },
   },
   methods: {
     addProduct() {
-      this.$emit("addProduct", this.product_data.article);
-    }
-  }
+      this.$emit('addProduct', this.product_data.article);
+    },
+  },
 };
 </script>
 
 <style scoped>
 .gallery-item {
   flex-basis: 25%;
+  width: 250px;
   box-shadow: 0 0 8px 0 lightslategray;
   color: aquamarine;
+  margin: 0 auto 30px auto;
 }
 </style>
