@@ -1,12 +1,32 @@
 <template>
   <li class="gallery-item">
-    111 <img alt="Vue logo" src="../assets/1.jpg" width="400px" />
+    {{ product_data.article }}
+    <img
+      :src="require('../assets/' + product_data.imagesrc)"
+      alt="design"
+      width="250px"
+      height="200px"
+    />
+    <button @click="addProduct">add</button>
   </li>
 </template>
 
 <script>
 export default {
-  name: 'GalleryItem',
+  name: "GalleryItem",
+  props: {
+    product_data: {
+      type: Object,
+      default() {
+        return {};
+      }
+    }
+  },
+  methods: {
+    addProduct() {
+      this.$emit("addProduct", this.product_data.article);
+    }
+  }
 };
 </script>
 
