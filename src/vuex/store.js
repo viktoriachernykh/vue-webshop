@@ -13,7 +13,7 @@ let store = new Vuex.Store({
     SET_PRODUCTS_TO_STATE: (state, products) => {
       state.products = products;
     },
-    SET_CART: (state, product) => {
+    ADD_TO_CART: (state, product) => {
       if (state.cart.length) {
         const sameProduct = state.cart.find(
           (item) => item.article === product.article
@@ -29,6 +29,14 @@ let store = new Vuex.Store({
     },
     REMOVE_FROM_CART: (state, index) => {
       state.cart.splice(index, 1);
+    },
+    PLUS_PRODUCT_QUANTITY: (state, index) => {
+      [...state.cart, state.cart[index].quantity++];
+    },
+    MINUS_PRODUCT_QUANTITY: (state, index) => {
+      state.cart[index].quantity > 1
+        ? [...state.cart, state.cart[index].quantity--]
+        : state.cart.splice(index, 1);
     },
   },
   actions: {
@@ -46,10 +54,16 @@ let store = new Vuex.Store({
         });
     },
     ADD_PRODUCT_TO_CART({ commit }, product) {
-      commit('SET_CART', product);
+      commit('ADD_TO_CART', product);
     },
     DELETE_PRODUCT_FROM_CART({ commit }, index) {
       commit('REMOVE_FROM_CART', index);
+    },
+    PLUS_PRODUCT_QUANTITY({ commit }, index) {
+      commit('PLUS_PRODUCT_QUANTITY', index);
+    },
+    MINUS_PRODUCT_QUANTITY({ commit }, index) {
+      commit('MINUS_PRODUCT_QUANTITY', index);
     },
   },
   getters: {

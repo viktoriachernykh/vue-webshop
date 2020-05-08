@@ -13,30 +13,31 @@
 </template>
 
 <script>
-import GalleryItem from './GalleryItem.vue';
-import { mapActions, mapGetters } from 'vuex';
+import GalleryItem from "./GalleryItem.vue";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: 'Gallery',
+  name: "Gallery",
   components: {
-    GalleryItem,
+    GalleryItem
   },
   props: {},
   data() {
     return {};
   },
   computed: {
-    ...mapGetters(['PRODUCTS']),
+    ...mapGetters(["PRODUCTS"])
   },
   methods: {
-    ...mapActions(['FETCH_PRODUCTS', 'ADD_PRODUCT_TO_CART']),
+    ...mapActions(["FETCH_PRODUCTS", "ADD_PRODUCT_TO_CART"]),
     addProductToCart(data) {
       this.ADD_PRODUCT_TO_CART(data);
-    },
+    }
   },
   mounted() {
-    this.FETCH_PRODUCTS().then((res) => res.data && console.log(res.data));
-  },
+    this.FETCH_PRODUCTS();
+    // .then((res) => res.data && console.log(res.data));
+  }
 };
 </script>
 
