@@ -6,7 +6,7 @@
         :key="product.article"
         v-for="product in PRODUCTS"
         v-bind:product_data="product"
-        @addProduct="add"
+        @addProduct="addProductToCart"
       />
     </ul>
   </div>
@@ -29,9 +29,9 @@ export default {
     ...mapGetters(['PRODUCTS']),
   },
   methods: {
-    ...mapActions(['FETCH_PRODUCTS']),
-    add(data) {
-      console.log('data', data);
+    ...mapActions(['FETCH_PRODUCTS', 'ADD_PRODUCT_TO_CART']),
+    addProductToCart(data) {
+      this.ADD_PRODUCT_TO_CART(data);
     },
   },
   mounted() {

@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     addProduct() {
-      this.$emit('addProduct', this.product_data.article);
+      this.$emit('addProduct', this.product_data);
     },
   },
 };
